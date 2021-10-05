@@ -1,0 +1,26 @@
+//problem link : https://practice.geeksforgeeks.org/problems/bst-to-max-heap/0/?company[]=DE%20Shaw&company[]=DE%20Shaw&difficulty[]=1&page=1&query=company[]DE%20Shawdifficulty[]1page1company[]DE%20Shaw
+
+class Solution{
+  public:
+    void fitinreverse(Node* root,vector<int> v,int &i){
+        if(root==nullptr) return;
+        root->data=v[i];
+        i--;
+        fitinreverse(root->right,v,i);
+        fitinreverse(root->left,v,i);
+    }
+    void inorder(Node* root,vector<int> &v){
+        if(root==nullptr) return;
+        inorder(root->left,v);
+        v.push_back(root->data);
+        inorder(root->right,v);
+    }
+    void convertToMaxHeapUtil(Node* root)
+    {
+        // Your code goes here
+        vector<int> v;
+        inorder(root,v);
+        int i=v.size()-1;
+        fitinreverse(root,v,i);
+    }    
+};
